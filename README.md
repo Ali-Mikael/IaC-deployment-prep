@@ -1,6 +1,6 @@
 # IaC deployment prepping
 
-These preparatory tasks are part of the **course** // *assigment*: **Public Cloud Solution Architech** // *Practical IaC Deployment*      
+These preparatory tasks are part of the **course:** **Public Cloud Solution Architech** // *Assigment:* *Practical IaC Deployment*
 > <https://pekkakorpi-tassi.fi/courses/pkt-arc/pkt-arc-edu-olt-2025-1e/iac_deployment.html>         
 <br> 
 
