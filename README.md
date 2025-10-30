@@ -1,10 +1,10 @@
 # IaC deployment prepping
 
-These preparatory tasks are part of the course: **Public Cloud Solution Architech**      
-<https://pekkakorpi-tassi.fi/courses/pkt-arc/pkt-arc-edu-olt-2025-1e/iac_deployment.html>         
+These preparatory tasks are part of the **course** // *assigment*: **Public Cloud Solution Architech** // *Practical IaC Deployment*      
+> <https://pekkakorpi-tassi.fi/courses/pkt-arc/pkt-arc-edu-olt-2025-1e/iac_deployment.html>         
 <br> 
 
-Each **startswith("T")** file will give some insight into the specific task, but ultimately all code is stored in the `/terraform` folder!     
+Each file with the `"T" prefix` will provide some insight on the specificied task, but ultimately all code is stored in the `/terraform` folder!     
 
 ## How to deploy?     
 - Copy the `/terraform` folder unto your machine of choice.
