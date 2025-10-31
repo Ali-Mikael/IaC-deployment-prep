@@ -22,7 +22,6 @@ provider "aws" {
 }
 
 
-
 # ----------
 # Networking
 # ----------
@@ -50,9 +49,8 @@ resource "aws_internet_gateway" "igw" {
 }
 
 
-# Subnets and AZs
-# ---------------
-
+# Subnets 
+# -------
 resource "random_shuffle" "az" {
   input        = data.aws_availability_zones.available.names
   result_count = var.az_count
@@ -72,6 +70,61 @@ resource "aws_subnet" "s" {
   }
 }
 
+# ----------------------------
+# Network Access Control Lists
+# ----------------------------
+resource "aws_network_acl" "nacl" {
+  # Creating NACL dynamically based on local.nacl values
+  for_each = local.nacl
+  vpc_id   = aws_vpc.main.id
 
+  # Attaching ACLs to subnets dynamically
+  subnet_ids = [
+    for k, subnet in aws_subnet.s : subnet.id if (
+      each.key == "public" && length(regexall("public", k)) > 0 ||
+      each.key == "private" && length(regexall("private", k)) > 0
+    )
+  ]
 
+  # Public NACL rules
+  dynamic "ingress" {
+    for_each = each.key == "public" ? local.ports : {}
+    iterator = rule
+    content {
+      protocol   = "tcp"
+      rule_no    = index(local.rule_count, rule.key) * 10 + 100
+      action     = "allow"
+      cidr_block = "0.0.0.0/0"
+      from_port  = rule.value
+      to_port    = rule.value
+    }
+  }
 
+  # Private NACL rules
+  dynamic "ingress" {
+    for_each = each.key == "private" ? local.private_ingress_rules : []
+    iterator = rule
+    content {
+      protocol   = "tcp"
+      rule_no    = index(local.private_ingress_rules, rule.value) * 10 + 100
+      action     = "allow"
+      cidr_block = rule.value.cidr
+      from_port  = rule.value.port
+      to_port    = rule.value.port
+    }
+
+  }
+
+  egress {
+    protocol   = "-1"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = var.main_cidr
+    from_port  = 0
+    to_port    = 0
+  }
+
+  tags = {
+    Name = each.value
+  }
+}
