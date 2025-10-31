@@ -30,7 +30,7 @@ locals {
   # List of public cidrs we can use in our code
   public_cidrs = [for k, v in local.subnets : v if(startswith(k, "public"))]
 
-  # maybe something like this??
+  # This enables us accepting traffic (only) from multiple public subnets 
   private_ingress_rules = flatten([
     for k, port in local.ports : [
       for cidr in local.public_cidrs : {
