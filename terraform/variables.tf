@@ -19,3 +19,18 @@ variable "az_count" {
   type    = number
   default = 2
 }
+
+
+# Compute
+# -------
+
+variable "instance_type" {
+  type = string
+  default = "t2.micro"
+}
+
+variable "key_name_vm1" {
+  type = string
+  description = "SSH key name"
+  default = "vm1-key"
+}

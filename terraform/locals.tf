@@ -40,3 +40,9 @@ locals {
     ]
   ])
 }
+
+
+locals {
+  # Configure the file/path/to your public key on your local machine
+  public_key = file("~/.ssh/bastion_key.pub")
+}
