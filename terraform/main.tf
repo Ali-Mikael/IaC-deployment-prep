@@ -70,6 +70,33 @@ resource "aws_subnet" "s" {
   }
 }
 
+
+# Routing
+# -------
+
+# Creating a route table for public subnets
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "public-subnets-rt"
+  }
+}
+
+# Associating public route table with public subnets
+resource "aws_route_table_association" "public" {
+  for_each = aws_subnet.s
+
+  subnet_id = each.value.id
+  route_table_id = aws_route_table.public_rt.id
+}
+
+
 # ----------------------------
 # Network Access Control Lists
 # ----------------------------
@@ -80,7 +107,7 @@ resource "aws_network_acl" "nacl" {
 
   # Attaching ACLs to subnets dynamically
   subnet_ids = [
-    for k, subnet in aws_subnet.s : subnet.id if (
+    for k, subnet in aws_subnet.s : subnet.id if(
       each.key == "public" && length(regexall("public", k)) > 0 ||
       each.key == "private" && length(regexall("private", k)) > 0
     )
@@ -127,4 +154,25 @@ resource "aws_network_acl" "nacl" {
   tags = {
     Name = each.value
   }
+}
+
+# -------
+# Compute
+# -------
+
+resource "aws_instance" "vm1" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = var.instance_type
+  subnet_id     = aws_subnet.s["public-1"].id
+  key_name      = aws_key_pair.vm1.key_name
+
+  tags = {
+    Name = "VM-1"
+  }
+}
+
+# remember to configure the public key in locals.tf
+resource "aws_key_pair" "vm1" {
+  key_name   = var.key_name_vm1
+  public_key = local.public_key
 }
