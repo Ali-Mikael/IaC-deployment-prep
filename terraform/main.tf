@@ -89,10 +89,14 @@ resource "aws_route_table" "public_rt" {
 }
 
 # Associating public route table with public subnets
+# If clause makes sure only public subnets get associated
 resource "aws_route_table_association" "public" {
-  for_each = aws_subnet.s
+  for_each = {
+    for k, v in aws_subnet.s : k => v
+    if contains([k], "public")
+  }
 
-  subnet_id = each.value.id
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.public_rt.id
 }
 
@@ -146,7 +150,7 @@ resource "aws_network_acl" "nacl" {
     protocol   = "-1"
     rule_no    = 100
     action     = "allow"
-    cidr_block = var.main_cidr
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
     to_port    = 0
   }
@@ -156,20 +160,51 @@ resource "aws_network_acl" "nacl" {
   }
 }
 
+# Security groups
+# ---------------
+
+resource "aws_security_group" "allow_ssh" {
+  name   = "allow ssh"
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "allow-ssh"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  security_group_id = aws_security_group.allow_ssh.id
+  cidr_ipv4         = "0.0.0.0/0"
+
+  from_port   = local.ports.ssh
+  to_port     = local.ports.ssh
+  ip_protocol = "tcp"
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_outbound" {
+  security_group_id = aws_security_group.allow_ssh.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # equivalent to all ports
+}
+
+
+
 # -------
 # Compute
 # -------
 
 resource "aws_instance" "vm1" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  subnet_id     = aws_subnet.s["public-1"].id
-  key_name      = aws_key_pair.vm1.key_name
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.s["public-1"].id
+  key_name               = aws_key_pair.vm1.key_name
+  vpc_security_group_ids = [aws_security_group.allow_ssh.id]
 
   tags = {
     Name = "VM-1"
   }
 }
+
 
 # remember to configure the public key in locals.tf
 resource "aws_key_pair" "vm1" {
