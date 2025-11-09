@@ -14,7 +14,7 @@ You could use terraform for this, but it's safer to create it locally, and just 
 transfer the public key to your VM.     
 <br> 
 Create key pair locally:
-```bash
+```zsh
 $ ssh-keygen -t ed25519 -C "<enter-your-label-here>"
 ```
 - The string after the `-C` flag adds a label to your key, used for identification.
@@ -28,7 +28,7 @@ locals {
   public_key = file("~/.ssh/bastion_key.pub")
 }
 ```
-You'll soon see how it is used!      
+You'll soon see how it's used!      
 
 
 ## data.tf
@@ -149,22 +149,21 @@ Everytime we launch something in the public subnets, we automatically get a publ
 So now we only have to check the public IP address and connect to it!      
 
 ## Accessing the vm
-For ease of use, we create an `outputs.tf` file, and add the following configuration:
+For ease of use, we have an `outputs.tf` file, and the following configuration:
 ```hcl
 output "public_ip" {
   value = aws_instance.vm1.public_ip
   description = "Public IP of bastion host"
 }
 ```
-Now we just run `$ terraform apply` again and we get the VMs public IP address like so:
-- <img width="721" height="147" alt="Screenshot 2025-11-09 at 13 16 35" src="https://github.com/user-attachments/assets/004a86a7-0f19-4274-a107-a82a10442a35" />
-
+Everytime we run `$ terraform output`, we'll get the public IP!    
 
 
 Then, from our command line locally:
 ```bash
 $ ssh -i <path-to-private-key> ubuntu@<vm-pub-ip>
 ```
+
 
 
 
