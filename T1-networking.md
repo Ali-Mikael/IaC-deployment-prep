@@ -12,8 +12,11 @@
 We are creating:
 - A VPC using cidr block `10.0.0.0/16`
 - An Internet GW (attached to the VPC)
+- A route table to route internet bound traffic from public subnets to to the IGW
+  - We are also associating the route table with correct subnets.
 - We are creating subnets dynamically using one resource block
 - All resources created are getting default tags automatically, configured within the provider block (note that this doesn't apply to ELB/ALB created resources without explicit configuration)
+
 
 ### main.tf
 ```hcl
@@ -90,6 +93,32 @@ resource "aws_subnet" "s" {
     Name = "subnet-${each.key}"
   }
 }
+
+# Routing
+# -------
+
+# Creating a route table for public subnets
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "public-subnets-rt"
+  }
+}
+
+# Associating public route table with public subnets
+resource "aws_route_table_association" "public" {
+  for_each = aws_subnet.s
+
+  subnet_id = each.value.id
+  route_table_id = aws_route_table.public_rt.id
+}
 ```
 
 All code can be found in `/terraform` folder. From there you are able to see locals and variables etc.. used in this configuration
+
