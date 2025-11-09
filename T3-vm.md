@@ -10,7 +10,7 @@
 
 ## Key pair
 For the you to be able to log in to your VM, you need an asymmetric key pair.      
-You could use terraform for this, but it's safer to create it locally, and just let terraform do the heavy lifting for you, meaning
+You could use terraform for this, but it's better to create it locally, and just let terraform do the heavy lifting for you, meaning
 transfer the public key to your VM.     
 <br> 
 Create key pair locally:
@@ -135,7 +135,6 @@ resource "aws_key_pair" "vm1" {
   - <img width="880" height="52" alt="Screenshot 2025-11-09 at 12 39 46" src="https://github.com/user-attachments/assets/e6875a76-b1cf-4a86-a3b2-a56fb6730b21" />
 - Initialize terraform, validate your configuration, and if everything looks good: `$ terraform apply`
   - <img width="877" height="533" alt="Screenshot 2025-11-09 at 12 39 26" src="https://github.com/user-attachments/assets/77ca5843-355f-4901-a62f-22db3b987ea7" />
-  - <img width="821" height="117" alt="Screenshot 2025-11-09 at 12 40 16" src="https://github.com/user-attachments/assets/e4859c09-1199-4b2f-baee-3479fbb75788" />
 
 Now we can check the console to make sure it worked:
 - <img width="864" height="164" alt="Screenshot 2025-11-09 at 13 03 34" src="https://github.com/user-attachments/assets/48f57b8a-5306-403f-b035-3ea865e7f2b8" />
@@ -156,13 +155,19 @@ output "public_ip" {
   description = "Public IP of bastion host"
 }
 ```
-Everytime we run `$ terraform output`, we'll get the public IP!    
+When terraform has created your resource, it will output the address like so:
+- <img width="801" height="189" alt="Screenshot 2025-11-09 at 15 42 48" src="https://github.com/user-attachments/assets/830478fb-44cd-4935-81f5-f1b744f41a82" />
+
+We can also run `$ terraform output` to get what we want:
+- <img width="762" height="47" alt="Screenshot 2025-11-09 at 15 45 20" src="https://github.com/user-attachments/assets/7d593f7a-89ba-4332-bef4-c98b1d2eb7c5" />
+
 
 
 Then, from our command line locally:
 ```bash
 $ ssh -i <path-to-private-key> ubuntu@<vm-pub-ip>
 ```
+
 
 
 
