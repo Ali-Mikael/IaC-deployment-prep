@@ -6,10 +6,6 @@ locals {
     private-1 = cidrsubnet(var.main_cidr, 8, 3)
     private-2 = cidrsubnet(var.main_cidr, 8, 4)
   }
-
-  # Creating list of the keys so we can iterate in our for_each in the resource block
-  subnet_keys = sort(keys(local.subnets))
-
 }
 
 locals {
