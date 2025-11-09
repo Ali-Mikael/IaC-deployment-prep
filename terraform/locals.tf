@@ -43,6 +43,6 @@ locals {
 
 
 locals {
-  # Configure the file/path/to your public key on your local machine
+  # The file/path/to/your/public_key on your local machine
   public_key = file("~/.ssh/bastion_key.pub")
 }
