@@ -14,7 +14,7 @@ You could use terraform for this, but it's better to create it locally, and just
 transfer the public key to your VM.     
 <br> 
 Create key pair locally:
-```zsh
+```bash
 $ ssh-keygen -t ed25519 -C "<enter-your-label-here>"
 ```
 - The string after the `-C` flag adds a label to your key, used for identification.
@@ -165,14 +165,15 @@ We can also run `$ terraform output` to get what we want:
 
 
 Then, from our command line locally:
-```zsh
+```bash
 $ ssh -i <path-to-private-key> ubuntu@<vm-pub-ip>
 ```
 - The `-i` flag tells us which corresponding private key to use for authorization
-  - Just replace *"<path-to-private-key>"* with your own && the *"<vm-pub-ip>"* with the IP address you got from the output variable.
+  - Just replace *"path-to-private-key"* with your own && the *"vm-pub-ip"* with the IP address you got from the output variable.
 
 
 **Result:**
 - <img width="833" height="510" alt="Screenshot 2025-11-09 at 16 01 36" src="https://github.com/user-attachments/assets/10de8772-aaf1-4736-a93d-70a26e3c80e5" />
 - Everything works!
   - We have succesfully created a VM and accessed it via SSH. 💯
+
