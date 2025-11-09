@@ -86,7 +86,7 @@ resource "aws_subnet" "s" {
 
   vpc_id                  = aws_vpc.main.id
   cidr_block              = each.value
-  availability_zone       = element(random_shuffle.az.result, index(local.subnet_keys, each.key))
+  availability_zone       = element(random_shuffle.az.result, index(keys(local.subnets), each.key))
   map_public_ip_on_launch = startswith(each.key, "public")
 
   tags = {
@@ -116,7 +116,7 @@ resource "aws_route_table" "public_rt" {
 resource "aws_route_table_association" "public" {
   for_each = {
     for k, v in aws_subnet.s : k => v
-    if contains([k], "public")
+    if startswith(k, "public")
   }
 
   subnet_id      = each.value.id
@@ -125,5 +125,3 @@ resource "aws_route_table_association" "public" {
 ```
 
 All code can be found in `/terraform` folder. From there you are able to see locals and variables etc.. used in this configuration
-
-
