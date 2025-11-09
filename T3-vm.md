@@ -127,7 +127,7 @@ resource "aws_key_pair" "vm1" {
 - We are creating a security group to attach to the instance, so that we can SSH into it.
 - We are creating the instance, based on an AMI we got from the `data block`.
   - It checks for an official ubuntu release by **Canonical** (the owner of ubuntu).
-- We are using the public key we created earlier for authorization
+- We are using the public key we created earlier for authorization.
   
 
 ## terraform apply
@@ -139,13 +139,14 @@ resource "aws_key_pair" "vm1" {
 Now we can check the console to make sure it worked:
 - <img width="864" height="164" alt="Screenshot 2025-11-09 at 13 03 34" src="https://github.com/user-attachments/assets/48f57b8a-5306-403f-b035-3ea865e7f2b8" />
 
-Because of our configuration in our public subnet resource creation.      
-Specifically the line:
+Because of our configuration in our `public subnet resource` creation.      
+**Specifically the line:**
 ```hcl
 map_public_ip_on_launch = startswith(each.key, "public")
 ```
 Everytime we launch something in the public subnets, we automatically get a public IP assigned to it.      
 So now we only have to check the public IP address and connect to it!      
+<br> 
 
 ## Accessing the vm
 For ease of use, we have an `outputs.tf` file, and the following configuration:
@@ -164,12 +165,14 @@ We can also run `$ terraform output` to get what we want:
 
 
 Then, from our command line locally:
-```bash
+```zsh
 $ ssh -i <path-to-private-key> ubuntu@<vm-pub-ip>
 ```
+- The `-i` flag tells us which corresponding private key to use for authorization
+  - Just replace *"<path-to-private-key>"* with your own && the *"<vm-pub-ip>"* with the IP address you got from the output variable.
 
 
-
-
-
-
+**Result:**
+- <img width="833" height="510" alt="Screenshot 2025-11-09 at 16 01 36" src="https://github.com/user-attachments/assets/10de8772-aaf1-4736-a93d-70a26e3c80e5" />
+- Everything works!
+  - We have succesfully created a VM and accessed it via SSH. 💯
