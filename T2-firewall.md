@@ -115,7 +115,7 @@ resource "aws_network_acl" "nacl" {
     protocol   = "-1"
     rule_no    = 100
     action     = "allow"
-    cidr_block = var.main_cidr
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
     to_port    = 0
   }
@@ -159,6 +159,7 @@ It would get too complex to create everything in the same block. Plus this way i
 **Public NACL and associations:**
 - <img width="1632" height="540" alt="Screenshot 2025-10-31 at 16 34 16" src="https://github.com/user-attachments/assets/84ac5f05-e0a0-4506-a551-4cdc40ec9ab4" />
 - <img width="1385" height="452" alt="Screenshot 2025-10-31 at 16 34 37" src="https://github.com/user-attachments/assets/76cc216e-7757-46b2-b25d-e896ba68aee4" />
+
 
 
 
