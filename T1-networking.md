@@ -112,13 +112,18 @@ resource "aws_route_table" "public_rt" {
 }
 
 # Associating public route table with public subnets
+# If clause makes sure only public subnets get associated
 resource "aws_route_table_association" "public" {
-  for_each = aws_subnet.s
+  for_each = {
+    for k, v in aws_subnet.s : k => v
+    if contains([k], "public")
+  }
 
-  subnet_id = each.value.id
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.public_rt.id
 }
 ```
 
 All code can be found in `/terraform` folder. From there you are able to see locals and variables etc.. used in this configuration
+
 
