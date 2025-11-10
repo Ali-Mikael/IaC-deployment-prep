@@ -17,20 +17,6 @@ Let's expand the configurations a little bit. >>>
 ### locals.tf
 ```hcl
 locals {
-  # Splitting the main CIDR (/16) into /24 subnets
-  subnets = {
-    public-1  = cidrsubnet(var.main_cidr, 8, 1)
-    public-2  = cidrsubnet(var.main_cidr, 8, 2)
-    private-1 = cidrsubnet(var.main_cidr, 8, 3)
-    private-2 = cidrsubnet(var.main_cidr, 8, 4)
-  }
-
-  # Creating list of the keys so we can iterate in our for_each in the resource block
-  subnet_keys = sort(keys(local.subnets))
-
-}
-
-locals {
   ports = {
     ssh   = 22
     http  = 80
@@ -64,7 +50,7 @@ We now have values we can use in resource creation!
 **Shortly:** We solved the challenge by creating a `flattened list of objects` for the private ingress rules. This maps each rule to each (public) subnet (to allow traffic from), and next you'll see it in action.       
 
 ### main.tf
-(previous configurations redacted for brevity/readability)
+(some configurations redacted for readability)
 ```hcl
 # ----------------------------
 # Network Access Control Lists
@@ -159,8 +145,3 @@ It would get too complex to create everything in the same block. Plus this way i
 **Public NACL and associations:**
 - <img width="1632" height="540" alt="Screenshot 2025-10-31 at 16 34 16" src="https://github.com/user-attachments/assets/84ac5f05-e0a0-4506-a551-4cdc40ec9ab4" />
 - <img width="1385" height="452" alt="Screenshot 2025-10-31 at 16 34 37" src="https://github.com/user-attachments/assets/76cc216e-7757-46b2-b25d-e896ba68aee4" />
-
-
-
-
-
