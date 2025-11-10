@@ -10,7 +10,8 @@ Each file with the `"T" prefix` will provide some insight on the specificied tas
 - Copy the `/terraform` folder unto your machine of choice.
 - Paste your **AWS credentials** into `~/.aws/credentials`.
   - (For example: `$ nano ~/.aws/credentials` > paste > `Ctrl + X` to save and `y + enter` to confirm)
-- Make sure you are within the folder! `$ cd <path-to-tf-folder>`.
+- Make sure you are within the folder! `$ cd <path-to-tf-folder>`.      
+  
 **Initialize terraform**
 ```bash
 $ terraform init
