@@ -37,8 +37,19 @@ locals {
   ])
 }
 
-
 locals {
   # The file/path/to/your/public_key on your local machine
   public_key = file("~/.ssh/bastion_key.pub")
+}
+
+# Random string for bucket names
+resource "random_id" "bucket" {
+  byte_length = 8
+}
+
+locals {
+  buckets = {
+    private = "private-bucket-${random_id.bucket.hex}"
+    public  = "public-bucket-${random_id.bucket.hex}"
+  }
 }
