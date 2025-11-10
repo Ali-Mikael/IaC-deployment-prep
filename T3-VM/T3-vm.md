@@ -31,23 +31,6 @@ locals {
 You'll soon see how it's used!      
 
 
-## data.tf
-```hcl
-# Getting the AMI for the VM
-# Using the latest ubuntu-jammy here
-data "aws_ami" "ubuntu" {
-  most_recent = true
-  owners      = ["099720109477"] # Canonical
-  region      = var.aws_region
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  }
-}
-```
-
-
 ## variables.tf
 ```hcl
 # Compute
@@ -64,10 +47,6 @@ variable "key_name_vm1" {
   default = "vm1-key"
 }
 ```
-
-## locals.tf
-This one you already saw above! (scroll back to the **Key pair** section)       
-Next you're gonna see it in action!       
 
 
 ## VM
@@ -124,7 +103,7 @@ resource "aws_key_pair" "vm1" {
 }
 ```
 **What are we creating?**
-- We are creating a security group to attach to the instance, so that we can SSH into it.
+- We are creating a security group for the instance, so that we can SSH into it.
 - We are creating the instance, based on an AMI we got from the `data block`.
   - It checks for an official ubuntu release by **Canonical** (the owner of ubuntu).
 - We are using the public key we created earlier for authorization.
