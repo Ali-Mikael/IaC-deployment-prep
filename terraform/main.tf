@@ -91,8 +91,7 @@ resource "aws_route_table" "public_rt" {
 # If clause makes sure only public subnets get associated
 resource "aws_route_table_association" "public" {
   for_each = {
-    for k, v in aws_subnet.s : k => v
-    if startswith(k, "public")
+    for k, v in aws_subnet.s : k => v if startswith(k, "public")
   }
 
   subnet_id      = each.value.id
@@ -142,10 +141,9 @@ resource "aws_network_acl" "nacl" {
       from_port  = rule.value.port
       to_port    = rule.value.port
     }
-
   }
 
-  # Egress rule for all NACLs, accepting all outgoing by default
+  # Accepting all outgoing
   egress {
     protocol   = "-1"
     rule_no    = 100
@@ -213,9 +211,6 @@ resource "aws_key_pair" "vm1" {
 # -------
 # Storage
 # -------
-
-
-# Bucket creation
 resource "aws_s3_bucket" "b" {
   for_each = local.buckets
 
@@ -275,3 +270,6 @@ resource "aws_s3_bucket_public_access_block" "public" {
 #     }
 #   }
 # }
+
+
+

@@ -4,10 +4,6 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-
-# Networking
-# ----------
-
 # Main cidr block for the VPC
 variable "main_cidr" {
   type    = string
@@ -20,15 +16,13 @@ variable "az_count" {
   default = 2
 }
 
-
-# Compute
-# -------
-
+# Instance type for VM
 variable "instance_type" {
   type = string
   default = "t2.micro"
 }
 
+# SSH key name
 variable "key_name_vm1" {
   type = string
   description = "SSH key name"
