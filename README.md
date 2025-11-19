@@ -4,13 +4,21 @@ These preparatory tasks are part of the **course:** **Public Cloud Solution Arch
 > <https://pekkakorpi-tassi.fi/courses/pkt-arc/pkt-arc-edu-olt-2025-1e/iac_deployment.html>         
 <br> 
 
-Each file with the `"T" prefix` will provide some insight on the specificied task, but ultimately all code is stored in the `/terraform` folder!     
+Each task is contained inside a folder with the `"T" prefix`, but ultimately all code is stored in the `/terraform` folder!     
 
 ## How to deploy?     
-- Copy the `/terraform` folder unto your machine of choice.
+- Download Terraform.
+  - Instructions here: <https://developer.hashicorp.com/terraform/install>
+- Download AWS CLI.
+  - Instructions here: <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>
+- Download git repo.
+```bash
+$ git clone https://github.com/Ali-Mikael/IaC-deployment-prep
+```
+- Navigate to the `/terraform` directory.
 - Paste your **AWS credentials** into `~/.aws/credentials`.
   - (For example: `$ nano ~/.aws/credentials` > paste > `Ctrl + X` to save and `y + enter` to confirm)
-- Make sure you are within the folder! `$ cd <path-to-tf-folder>`.      
+- Make sure you are within the folder! `$ pwd`      
   
 **Initialize terraform**
 ```bash
