@@ -10,7 +10,7 @@ Task goals:
 - README.md contains instructions how to setup VM that is used to create VM Image.
 
 # Note
-I created this task as a standalone section for the purpose of creating custom AMIs (might as well treat this as a `dev vpc`).    
+I completed this task as a standalone section for the purpose of creating custom AMIs (might as well treat this as a `dev vpc`).    
 What do I mean "Standalone"?:
 - New VPC (with different main vpc cidr)
 - New everything else as well.
@@ -90,6 +90,7 @@ $ terraform apply
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
 - <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+
 
 
 
