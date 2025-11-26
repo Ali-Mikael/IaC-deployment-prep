@@ -6,9 +6,6 @@
 - Include screenshots about Public and Protected containers with test files to task README.txt
 
 
-# The code can be found in this folder
-
-
 # Deploying
 You can either copy the `*.tf` files in this folder to your machine of choice, navigate into the folder, initialise terraform from there:
 ```
@@ -37,6 +34,7 @@ You can **download** the main `/terraform` **folder** to your computer **locally
 - <img width="1117" height="515" alt="Screenshot 2025-11-18 at 14 35 51" src="https://github.com/user-attachments/assets/a854d103-3426-416e-bc20-6894f8bb3d2c" />
 - <img width="885" height="97" alt="Screenshot 2025-11-18 at 14 43 43" src="https://github.com/user-attachments/assets/877a7bb9-b976-4993-8a95-b203c8583edf" />
 - <img width="1128" height="406" alt="Screenshot 2025-11-18 at 14 44 09" src="https://github.com/user-attachments/assets/92def263-eba4-4e41-8fa0-fc0853e931d6" />
+
 
 
 
