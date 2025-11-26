@@ -17,8 +17,20 @@ What do I mean "Standalone"?:
 - I came to the conclusion it would be better to have this kind of setup for testing purposes etc.
 - I will ofcourse apply the same functionality to the main template (with all the rest of the configs) as well!      
 
-Make sure you have this folder on your local machine, or navigate to the `/test` directory **within** the `/terraform` directory.       
-Example location of `main.tf` file = `/terraform/test/main.tf`.     
+Make sure you have this folder on your local machine,      
+***or***     
+Navigate to the `/terraform/test` directory.    
+
+Example location of `main.tf` file == `/terraform/test/main.tf`.     
+
+# REMEMBER !!!
+To create your own SSH keys and add the public key to the configuration (in `locals.tf`):
+```hcl
+locals {
+  # The file/path/to/your/public_key on your local machine
+  public_key = file("~/.ssh/bastion_key.pub")
+}
+```
 
 ## Preparing VM
 **Initialize && apply**
@@ -89,16 +101,17 @@ $ terraform apply
 ```
 - <img width="995" height="221" alt="Screenshot 2025-11-26 at 20 21 10" src="https://github.com/user-attachments/assets/e410b041-2572-4176-8702-13c21a4e11f7" />
 - <img width="924" height="452" alt="Screenshot 2025-11-26 at 20 22 29" src="https://github.com/user-attachments/assets/39b51bc3-59a2-4838-968b-c3e7d82f3ed0" />
-- Forgot to add the output lol.
-- Add it and `$ terraform apply`.
+- Forgot to add the output **lol**.
+- Add it and -> `$ terraform apply`.
 - <img width="606" height="118" alt="Screenshot 2025-11-26 at 20 24 16" src="https://github.com/user-attachments/assets/38fc652b-6ad8-4722-99e5-0770cf88de45" />
-  - Had to come up with a unique name for the output. `cami` stands for `Custom AMI Instance` in this case. You can name it whatever you like.
+- Had to come up with a unique name for the output. `cami` stands for `Custom AMI Instance` in this case. You can name it whatever you like.
 - <img width="716" height="178" alt="Screenshot 2025-11-26 at 20 24 27" src="https://github.com/user-attachments/assets/888241e9-32b9-42ea-bc4d-0cb416a26502" />
 - You don't even have to log in to the instance, as we already enabled apache before creating the AMI.
 - Just copy the public IP from the output and paste it to your browser.
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
 - <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+
 
 
 
