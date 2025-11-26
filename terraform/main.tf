@@ -213,9 +213,9 @@ resource "aws_key_pair" "vm1" {
 # ---------------------------------------------->
 # resource "aws_ami_from_instance" "custom_ami" {
 #   name               = "Custom AMI"
-#   source_instance_id = var.source_instance_id
+#   source_instance_id = <instance id here!>
 #   timeouts {
-#     create = "10min"
+#     create = "10m"
 #   }
 # }
 
@@ -257,7 +257,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "lc" {
   }
 }
 
-
 # Effectively making the public bucket -> Public
 resource "aws_s3_bucket_public_access_block" "public" {
   bucket = aws_s3_bucket.b["public"].id
@@ -267,8 +266,6 @@ resource "aws_s3_bucket_public_access_block" "public" {
   ignore_public_acls      = false
   restrict_public_buckets = false
 }
-
-
 
 # resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
 #   for_each = aws_s3_bucket.b
@@ -309,4 +306,3 @@ resource "aws_iam_role_policy" "name" {
   role = aws_iam_role.ec2.id
   policy = data.aws_iam_policy_document.ec2_read_secret.json
 }
-

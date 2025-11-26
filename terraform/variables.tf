@@ -36,10 +36,3 @@ variable "secret" {
   user1 = "Password1!"
   }
 }
-
-# Instance ID to create a custom image
-variable "source_instance_id" {
-  description = "A custom AMI will be created from this instance"
-  type = string
-  default = null
-}
