@@ -31,5 +31,5 @@ $ sudo apt update && sudo apt upgrade -y
 ```
 
 ```
-$ sudo apt install apache2
+$ sudo apt install -y apache2 python3-flask mariadb-server
 ```

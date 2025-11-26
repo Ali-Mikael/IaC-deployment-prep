@@ -21,8 +21,3 @@ variable "key_name_vm1" {
   description = "SSH key name"
   default = "vm1-key"
 }
-
-variable "source_instance_id" {
-  type = string
-  default = null
-}

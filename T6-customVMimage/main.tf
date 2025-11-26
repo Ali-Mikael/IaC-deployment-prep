@@ -93,6 +93,16 @@ resource "aws_network_acl" "main" {
       to_port    = ingress.value
     }
   }
+
+  # Ephemeral ports open so that we can download updates etc..
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 125
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 1024
+    to_port    = 65535
+  }
   egress {
     protocol   = "-1"
     rule_no    = 10
@@ -102,7 +112,7 @@ resource "aws_network_acl" "main" {
     to_port    = 0
   }
   tags = {
-    Name = "publicFacing-nacl"
+    Name = "public-facing-nacl"
   }
 }
 
@@ -126,6 +136,7 @@ resource "aws_vpc_security_group_ingress_rule" "i" {
   ip_protocol       = "tcp"
   to_port           = each.value
 }
+
 resource "aws_vpc_security_group_egress_rule" "e" {
   security_group_id = aws_security_group.sg.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -147,7 +158,7 @@ resource "aws_ebs_volume" "root_volume" {
 
 # Attaching the volume
 resource "aws_volume_attachment" "ebs" {
-  device_name = "/dev/sda1"
+  device_name = "/dev/sdh"
   instance_id = aws_instance.test_1.id
   volume_id   = aws_ebs_volume.root_volume.id
 
@@ -161,10 +172,8 @@ resource "aws_instance" "test_1" {
   availability_zone      = data.aws_availability_zones.available.names[0]
   vpc_security_group_ids = [aws_security_group.sg.id]
 
-  ebs_optimized          = true
-  key_name               = aws_key_pair.vm1.key_name
-  user_data              = "xx"
-  user_data_replace_on_change = true
+  ebs_optimized = true
+  key_name      = aws_key_pair.vm1.key_name
 
   tags = {
     Name = "test-vm-1"
@@ -175,22 +184,42 @@ resource "aws_key_pair" "vm1" {
   key_name   = var.key_name_vm1
   public_key = local.public_key
 }
-
-
-# WHERE THE MAGIC HAPPENS
-resource "aws_ami_from_instance" "custom_ami" {
-  name               = "Custom AMI"
-  source_instance_id = var.source_instance_id
-  timeouts {
-    create = "10min"
-  }
-}
-
-output "custom_ami_id" {
-  value = aws_ami_from_instance.custom_ami.id
-}
-
 output "public_ip" {
   description = "Public IP of test instance"
-  value = aws_instance.test_1.public_ip
+  value       = aws_instance.test_1.public_ip
 }
+
+# Uncomment the following section && run `terraform apply` when you want to create a custom AMI
+# --------------------------------------------------------------------------------------------->
+# resource "aws_ami_from_instance" "custom_ami" {
+#   name               = "Custom AMI"
+#   source_instance_id = aws_instance.test_1.id
+#   timeouts {
+#     create = "10m"
+#   }
+# }
+
+# output "custom_ami_id" {
+#   value = aws_ami_from_instance.custom_ami.id
+# }
+
+
+# This section is for creating a VM from that custom AMI
+# ------------------------------------------------------>
+# resource "aws_instance" "custom_ami_vm" {
+#   ami                    = aws_ami_from_instance.custom_ami.id
+#   instance_type          = var.instance_type
+#   subnet_id              = aws_subnet.test.id
+#   availability_zone      = data.aws_availability_zones.available.names[0]
+#   vpc_security_group_ids = [aws_security_group.sg.id]
+
+#   key_name               = aws_key_pair.vm1.key_name
+
+#   tags = {
+#     Name = "custom-ami-vm"
+#   }
+# }
+# output "public_ip-cami" {
+#   description = "Public IP of custom ami instance"
+#   value       = aws_instance.custom_ami_vm.public_ip
+# }
