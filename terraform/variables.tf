@@ -28,3 +28,18 @@ variable "key_name_vm1" {
   description = "SSH key name"
   default = "vm1-key"
 }
+
+variable "secret" {
+  type = map(string)
+  sensitive = true
+  default = {
+  user1 = "Password1!"
+  }
+}
+
+# Instance ID to create a custom image
+variable "source_instance_id" {
+  description = "A custom AMI will be created from this instance"
+  type = string
+  default = null
+}

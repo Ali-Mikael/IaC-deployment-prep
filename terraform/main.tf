@@ -207,6 +207,17 @@ resource "aws_key_pair" "vm1" {
   public_key = local.public_key
 }
 
+# -------------------------------------------------------------
+# Uncomment if you want to create a custom AMI from an instance
+# Just specify the instance ID you want to use!
+# ---------------------------------------------->
+# resource "aws_ami_from_instance" "custom_ami" {
+#   name               = "Custom AMI"
+#   source_instance_id = var.source_instance_id
+#   timeouts {
+#     create = "10min"
+#   }
+# }
 
 # -------
 # Storage
@@ -222,14 +233,14 @@ resource "aws_s3_bucket" "b" {
 }
 
 # Versioning buckets
-resource "aws_s3_bucket_versioning" "v" {
-  for_each = aws_s3_bucket.b
-  bucket   = each.value.id
+# resource "aws_s3_bucket_versioning" "v" {
+#   for_each = aws_s3_bucket.b
+#   bucket   = each.value.id
 
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
 
 # Lifecycle config for buckets
 resource "aws_s3_bucket_lifecycle_configuration" "lc" {
@@ -245,7 +256,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "lc" {
     }
   }
 }
-
 
 
 # Effectively making the public bucket -> Public
@@ -272,4 +282,31 @@ resource "aws_s3_bucket_public_access_block" "public" {
 # }
 
 
+# IAM
+# ---
+
+resource "aws_secretsmanager_secret" "secret" {
+  name = "dummy-user"
+  
+}
+
+# The secret (password)
+resource "aws_secretsmanager_secret_version" "v" {
+  secret_id     = aws_secretsmanager_secret.secret.id
+  secret_string = jsonencode(var.secret)
+}
+
+
+resource "aws_iam_role" "ec2" {
+  name = "ec2-secrets-manager-role"
+  assume_role_policy = data.aws_iam_policy_document.ec2_assume_role.json
+  tags = {
+    Name = "ec2-role"
+  }
+}
+
+resource "aws_iam_role_policy" "name" {
+  role = aws_iam_role.ec2.id
+  policy = data.aws_iam_policy_document.ec2_read_secret.json
+}
 
