@@ -18,7 +18,7 @@ What do I mean "Standalone"?:
 - I will ofcourse apply the same functionality to the main template (with all the rest of the configs) as well!      
 
 Make sure you have this folder on your local machine, or navigate to the `/test` directory **within** the `/terraform` directory.       
-Example of main.tf file = `/terraform/test/main.tf`.     
+Example location of `main.tf` file = `/terraform/test/main.tf`.     
 
 ## Preparing VM
 **Initialize && apply**
@@ -90,6 +90,7 @@ $ terraform apply
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
 - <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+
 
 
 
