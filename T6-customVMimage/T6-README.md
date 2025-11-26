@@ -46,18 +46,27 @@ $ ssh -i ~/.ssh/"key-name" ubuntu@"public-ip"
 
 **Run the following commands**
 ```
-$ sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 ```
 
 ```
-$ sudo apt install -y apache2 python3-flask mariadb-server
+sudo apt install -y apache2 python3-flask mariadb-server
 ```
 <img width="950" height="97" alt="Screenshot 2025-11-26 at 19 47 34" src="https://github.com/user-attachments/assets/5d0c33d4-3408-4295-96db-5343d39e778e" />       
-<img width="1039" height="255" alt="Screenshot 2025-11-26 at 19 48 11" src="https://github.com/user-attachments/assets/24c6066a-10bf-4b34-8c5f-ced0ee1b1a40" />      
+<img width="1039" height="255" alt="Screenshot 2025-11-26 at 19 48 11" src="https://github.com/user-attachments/assets/24c6066a-10bf-4b34-8c5f-ced0ee1b1a40" />     
+<br> 
+
+**Enabling and starting apache**
+```
+sudo systemctl enable apache2
+```
+```
+sudo systemctl start apache2
+```
 <img width="1032" height="212" alt="Screenshot 2025-11-26 at 20 52 19" src="https://github.com/user-attachments/assets/911aae7f-ce6d-4048-8b08-501675132a51" />      
 
 **Test that it works**
-<img width="803" height="581" alt="Screenshot 2025-11-26 at 20 06 26" src="https://github.com/user-attachments/assets/ccb8fded-48b4-4946-92fc-9b838953ff74" />
+<img width="803" height="581" alt="Screenshot 2025-11-26 at 20 06 26" src="https://github.com/user-attachments/assets/ccb8fded-48b4-4946-92fc-9b838953ff74" />     
 We're able to access the page using the instance public IP. We can now move on to creating the AMI.       
 
 ## Creating AMI
@@ -90,6 +99,7 @@ $ terraform apply
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
 - <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+
 
 
 
