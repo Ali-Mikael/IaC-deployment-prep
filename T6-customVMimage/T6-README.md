@@ -65,7 +65,7 @@ sudo systemctl start apache2
 ```
 <img width="1032" height="212" alt="Screenshot 2025-11-26 at 20 52 19" src="https://github.com/user-attachments/assets/911aae7f-ce6d-4048-8b08-501675132a51" />      
 
-**Test that it works**
+**Test that it works**       
 <img width="803" height="581" alt="Screenshot 2025-11-26 at 20 06 26" src="https://github.com/user-attachments/assets/ccb8fded-48b4-4946-92fc-9b838953ff74" />     
 We're able to access the page using the instance public IP. We can now move on to creating the AMI.       
 
@@ -99,6 +99,7 @@ $ terraform apply
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
 - <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+
 
 
 
