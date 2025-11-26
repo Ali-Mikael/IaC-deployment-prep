@@ -110,24 +110,8 @@ $ terraform apply
 - Just copy the public IP from the output and paste it to your browser.
 - <img width="1000" height="721" alt="Screenshot 2025-11-26 at 20 25 31" src="https://github.com/user-attachments/assets/506c87ae-2dca-479a-9307-7d8484bad6fb" />
 - Last check before tf destroying it all
-- <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />
+- <img width="869" height="260" alt="Screenshot 2025-11-26 at 20 26 04" src="https://github.com/user-attachments/assets/56584759-6f67-4a00-97db-ca77d16bef7f" />     
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## The VPC I was talking about:
+<img width="1646" height="733" alt="Screenshot 2025-11-26 at 17 55 17" src="https://github.com/user-attachments/assets/966e2029-135b-4d73-9b1d-58e18a848dd9" />
