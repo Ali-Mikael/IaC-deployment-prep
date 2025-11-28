@@ -1,0 +1,1632 @@
+{
+  "version": 4,
+  "terraform_version": "1.14.0",
+  "serial": 290,
+  "lineage": "ea382014-1e6b-94b0-80d7-389fcb790560",
+  "outputs": {
+    "public_ip": {
+      "value": "54.197.112.31",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_ami",
+      "name": "ubuntu",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "allow_unsafe_filter": null,
+            "architecture": "x86_64",
+            "arn": "arn:aws:ec2:us-east-1::image/ami-03deb8c961063af8c",
+            "block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "ebs": {
+                  "delete_on_termination": "true",
+                  "encrypted": "false",
+                  "iops": "0",
+                  "snapshot_id": "snap-0857ccdc177548e96",
+                  "throughput": "0",
+                  "volume_initialization_rate": "0",
+                  "volume_size": "8",
+                  "volume_type": "gp2"
+                },
+                "no_device": "",
+                "virtual_name": ""
+              },
+              {
+                "device_name": "/dev/sdb",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral0"
+              },
+              {
+                "device_name": "/dev/sdc",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral1"
+              }
+            ],
+            "boot_mode": "uefi-preferred",
+            "creation_date": "2025-11-22T06:49:32.000Z",
+            "deprecation_time": "2027-11-22T06:49:32.000Z",
+            "description": "Canonical, Ubuntu, 22.04, amd64 jammy image",
+            "ena_support": true,
+            "executable_users": null,
+            "filter": [
+              {
+                "name": "name",
+                "values": [
+                  "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+                ]
+              }
+            ],
+            "hypervisor": "xen",
+            "id": "ami-03deb8c961063af8c",
+            "image_id": "ami-03deb8c961063af8c",
+            "image_location": "amazon/ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20251122",
+            "image_owner_alias": "amazon",
+            "image_type": "machine",
+            "imds_support": "",
+            "include_deprecated": false,
+            "kernel_id": "",
+            "last_launched_time": "",
+            "most_recent": true,
+            "name": "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-20251122",
+            "name_regex": null,
+            "owner_id": "099720109477",
+            "owners": [
+              "099720109477"
+            ],
+            "platform": "",
+            "platform_details": "Linux/UNIX",
+            "product_codes": [],
+            "public": true,
+            "ramdisk_id": "",
+            "region": "us-east-1",
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "root_snapshot_id": "snap-0857ccdc177548e96",
+            "sriov_net_support": "simple",
+            "state": "available",
+            "state_reason": {
+              "code": "UNSET",
+              "message": "UNSET"
+            },
+            "tags": {},
+            "timeouts": null,
+            "tpm_support": "",
+            "uefi_data": null,
+            "usage_operation": "RunInstances",
+            "virtualization_type": "hvm"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_availability_zones",
+      "name": "available",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "all_availability_zones": null,
+            "exclude_names": null,
+            "exclude_zone_ids": null,
+            "filter": null,
+            "group_names": [
+              "us-east-1-zg-1"
+            ],
+            "id": "us-east-1",
+            "names": [
+              "us-east-1a",
+              "us-east-1b",
+              "us-east-1c",
+              "us-east-1d",
+              "us-east-1e",
+              "us-east-1f"
+            ],
+            "region": "us-east-1",
+            "state": "available",
+            "timeouts": null,
+            "zone_ids": [
+              "use1-az4",
+              "use1-az6",
+              "use1-az1",
+              "use1-az2",
+              "use1-az3",
+              "use1-az5"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "labrole",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::213401740863:role/LabRole",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::213401740863:role/LabRole\",\"Service\":[\"firehose.amazonaws.com\",\"cognito-idp.amazonaws.com\",\"eks-fargate-pods.amazonaws.com\",\"forecast.amazonaws.com\",\"states.amazonaws.com\",\"deepracer.amazonaws.com\",\"kinesisanalytics.amazonaws.com\",\"elasticmapreduce.amazonaws.com\",\"ec2.application-autoscaling.amazonaws.com\",\"apigateway.amazonaws.com\",\"events.amazonaws.com\",\"ecs.amazonaws.com\",\"redshift.amazonaws.com\",\"ssm.amazonaws.com\",\"rekognition.amazonaws.com\",\"application-autoscaling.amazonaws.com\",\"cloudformation.amazonaws.com\",\"elasticfilesystem.amazonaws.com\",\"elasticloadbalancing.amazonaws.com\",\"codedeploy.amazonaws.com\",\"dynamodb.amazonaws.com\",\"sagemaker.amazonaws.com\",\"kms.amazonaws.com\",\"databrew.amazonaws.com\",\"s3.amazonaws.com\",\"sns.amazonaws.com\",\"iotanalytics.amazonaws.com\",\"kinesis.amazonaws.com\",\"secretsmanager.amazonaws.com\",\"credentials.iot.amazonaws.com\",\"glue.amazonaws.com\",\"logs.amazonaws.com\",\"cloudtrail.amazonaws.com\",\"ec2.amazonaws.com\",\"eks.amazonaws.com\",\"iotevents.amazonaws.com\",\"sqs.amazonaws.com\",\"codecommit.amazonaws.com\",\"lambda.amazonaws.com\",\"athena.amazonaws.com\",\"codewhisperer.amazonaws.com\",\"iot.amazonaws.com\",\"elasticbeanstalk.amazonaws.com\",\"rds.amazonaws.com\",\"resource-groups.amazonaws.com\",\"servicecatalog.amazonaws.com\",\"autoscaling.amazonaws.com\",\"backup.amazonaws.com\",\"scheduler.amazonaws.com\",\"pipes.amazonaws.com\",\"ecs-tasks.amazonaws.com\",\"cloud9.amazonaws.com\",\"batch.amazonaws.com\"]}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-11-28T19:08:47Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "LabRole",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::213401740863:policy/c177152a4579220l11882376t1w213401740863-VocLabPolicy1-oOEVCzGYGxRa",
+              "arn:aws:iam::213401740863:policy/c177152a4579220l11882376t1w213401740863-VocLabPolicy2-XfQi4ZG85XxP",
+              "arn:aws:iam::213401740863:policy/c177152a4579220l11882376t1w213401740863-VocLabPolicy3-6sEELp1gycvt",
+              "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+              "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+              "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+              "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+            ],
+            "max_session_duration": 3600,
+            "name": "LabRole",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "cloudlab": "c177152a4579220l11882376t1w213401740863"
+            },
+            "tags_all": {
+              "cloudlab": "c177152a4579220l11882376t1w213401740863"
+            },
+            "unique_id": "AROATDL54EY7VNANMRG64"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "name": "LabRole"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_iam_policy_document.ec2_assume_role"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "vm1",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 2,
+          "attributes": {
+            "ami": "ami-03deb8c961063af8c",
+            "arn": "arn:aws:ec2:us-east-1:213401740863:instance/i-09cd8af638f1fa236",
+            "associate_public_ip_address": true,
+            "availability_zone": "us-east-1e",
+            "capacity_reservation_specification": [
+              {
+                "capacity_reservation_preference": "open",
+                "capacity_reservation_target": []
+              }
+            ],
+            "cpu_options": [
+              {
+                "amd_sev_snp": "",
+                "core_count": 1,
+                "threads_per_core": 1
+              }
+            ],
+            "credit_specification": [
+              {
+                "cpu_credits": "standard"
+              }
+            ],
+            "disable_api_stop": false,
+            "disable_api_termination": false,
+            "ebs_block_device": [],
+            "ebs_optimized": false,
+            "enable_primary_ipv6": null,
+            "enclave_options": [
+              {
+                "enabled": false
+              }
+            ],
+            "ephemeral_block_device": [],
+            "force_destroy": false,
+            "get_password_data": false,
+            "hibernation": false,
+            "host_id": "",
+            "host_resource_group_arn": null,
+            "iam_instance_profile": "",
+            "id": "i-09cd8af638f1fa236",
+            "instance_initiated_shutdown_behavior": "stop",
+            "instance_lifecycle": "",
+            "instance_market_options": [],
+            "instance_state": "running",
+            "instance_type": "t2.micro",
+            "ipv6_address_count": 0,
+            "ipv6_addresses": [],
+            "key_name": "vm1-key",
+            "launch_template": [],
+            "maintenance_options": [
+              {
+                "auto_recovery": "default"
+              }
+            ],
+            "metadata_options": [
+              {
+                "http_endpoint": "enabled",
+                "http_protocol_ipv6": "disabled",
+                "http_put_response_hop_limit": 1,
+                "http_tokens": "optional",
+                "instance_metadata_tags": "disabled"
+              }
+            ],
+            "monitoring": false,
+            "network_interface": [],
+            "outpost_arn": "",
+            "password_data": "",
+            "placement_group": "",
+            "placement_group_id": "",
+            "placement_partition_number": 0,
+            "primary_network_interface": [
+              {
+                "delete_on_termination": true,
+                "network_interface_id": "eni-07fbc04d906c74bf5"
+              }
+            ],
+            "primary_network_interface_id": "eni-07fbc04d906c74bf5",
+            "private_dns": "ip-10-0-1-115.ec2.internal",
+            "private_dns_name_options": [
+              {
+                "enable_resource_name_dns_a_record": false,
+                "enable_resource_name_dns_aaaa_record": false,
+                "hostname_type": "ip-name"
+              }
+            ],
+            "private_ip": "10.0.1.115",
+            "public_dns": "ec2-54-197-112-31.compute-1.amazonaws.com",
+            "public_ip": "54.197.112.31",
+            "region": "us-east-1",
+            "root_block_device": [
+              {
+                "delete_on_termination": true,
+                "device_name": "/dev/sda1",
+                "encrypted": false,
+                "iops": 100,
+                "kms_key_id": "",
+                "tags": {
+                  "Course": "Public Cloud Solution Architect",
+                  "Creator": "Ali-G",
+                  "ManagedBy": "Terraform",
+                  "Project": "IaC deployment prep tasks"
+                },
+                "tags_all": {
+                  "Course": "Public Cloud Solution Architect",
+                  "Creator": "Ali-G",
+                  "ManagedBy": "Terraform",
+                  "Project": "IaC deployment prep tasks"
+                },
+                "throughput": 0,
+                "volume_id": "vol-041ece562543cb84b",
+                "volume_size": 8,
+                "volume_type": "gp2"
+              }
+            ],
+            "secondary_private_ips": [],
+            "security_groups": [],
+            "source_dest_check": true,
+            "spot_instance_request_id": "",
+            "subnet_id": "subnet-049da5e5e47c89d67",
+            "tags": {
+              "Name": "VM-1"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "VM-1",
+              "Project": "IaC deployment prep tasks"
+            },
+            "tenancy": "default",
+            "timeouts": null,
+            "user_data": null,
+            "user_data_base64": null,
+            "user_data_replace_on_change": false,
+            "volume_tags": null,
+            "vpc_security_group_ids": [
+              "sg-00989f081889b2286"
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "i-09cd8af638f1fa236",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMCwicmVhZCI6OTAwMDAwMDAwMDAwLCJ1cGRhdGUiOjYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMiJ9",
+          "dependencies": [
+            "aws_key_pair.vm1",
+            "aws_security_group.instance_sg",
+            "aws_subnet.s",
+            "aws_vpc.main",
+            "data.aws_ami.ubuntu",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_internet_gateway",
+      "name": "igw",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:internet-gateway/igw-0e0ac206455e0ebd0",
+            "id": "igw-0e0ac206455e0ebd0",
+            "owner_id": "213401740863",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "main-vpc-igw"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "main-vpc-igw",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_key_pair",
+      "name": "vm1",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:key-pair/vm1-key",
+            "fingerprint": "8htCJzY1Nhwu2JhCCupazEeMffrjOGIYKjCOqPSg/M0=",
+            "id": "vm1-key",
+            "key_name": "vm1-key",
+            "key_name_prefix": "",
+            "key_pair_id": "key-00e9189e7a9ed5fd5",
+            "key_type": "ed25519",
+            "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2M/Oq2B2dYTrbx6TBUEy0e066E/eXoRH6Wj+nk0VAW ali.g@G-Book.local",
+            "region": "us-east-1",
+            "tags": {},
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Project": "IaC deployment prep tasks"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_network_acl",
+      "name": "nacl",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "private",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:network-acl/acl-01b11b46215d5f57f",
+            "egress": [
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "-1",
+                "rule_no": 100,
+                "to_port": 0
+              }
+            ],
+            "id": "acl-01b11b46215d5f57f",
+            "ingress": [
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 1024,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 125,
+                "to_port": 65535
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.1.0/24",
+                "from_port": 22,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 140,
+                "to_port": 22
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.1.0/24",
+                "from_port": 443,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 120,
+                "to_port": 443
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.1.0/24",
+                "from_port": 80,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 100,
+                "to_port": 80
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.2.0/24",
+                "from_port": 22,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 150,
+                "to_port": 22
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.2.0/24",
+                "from_port": 443,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 130,
+                "to_port": 443
+              },
+              {
+                "action": "allow",
+                "cidr_block": "10.0.2.0/24",
+                "from_port": 80,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 110,
+                "to_port": 80
+              }
+            ],
+            "owner_id": "213401740863",
+            "region": "us-east-1",
+            "subnet_ids": [
+              "subnet-026284745288fb8b9",
+              "subnet-0d1ae20e26919bb15"
+            ],
+            "tags": {
+              "Name": "private-nacl"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "private-nacl",
+              "Project": "IaC deployment prep tasks"
+            },
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_subnet.s",
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        },
+        {
+          "index_key": "public",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:network-acl/acl-08cee253f04510d9f",
+            "egress": [
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 0,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "-1",
+                "rule_no": 100,
+                "to_port": 0
+              }
+            ],
+            "id": "acl-08cee253f04510d9f",
+            "ingress": [
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 1024,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 125,
+                "to_port": 65535
+              },
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 22,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 120,
+                "to_port": 22
+              },
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 443,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 110,
+                "to_port": 443
+              },
+              {
+                "action": "allow",
+                "cidr_block": "0.0.0.0/0",
+                "from_port": 80,
+                "icmp_code": 0,
+                "icmp_type": 0,
+                "ipv6_cidr_block": "",
+                "protocol": "6",
+                "rule_no": 100,
+                "to_port": 80
+              }
+            ],
+            "owner_id": "213401740863",
+            "region": "us-east-1",
+            "subnet_ids": [
+              "subnet-018cbdff327417547",
+              "subnet-049da5e5e47c89d67"
+            ],
+            "tags": {
+              "Name": "public-nacl"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "public-nacl",
+              "Project": "IaC deployment prep tasks"
+            },
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_subnet.s",
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "public_rt",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:route-table/rtb-0cb8004780deeb5b3",
+            "id": "rtb-0cb8004780deeb5b3",
+            "owner_id": "213401740863",
+            "propagating_vgws": [],
+            "region": "us-east-1",
+            "route": [
+              {
+                "carrier_gateway_id": "",
+                "cidr_block": "0.0.0.0/0",
+                "core_network_arn": "",
+                "destination_prefix_list_id": "",
+                "egress_only_gateway_id": "",
+                "gateway_id": "igw-0e0ac206455e0ebd0",
+                "ipv6_cidr_block": "",
+                "local_gateway_id": "",
+                "nat_gateway_id": "",
+                "network_interface_id": "",
+                "transit_gateway_id": "",
+                "vpc_endpoint_id": "",
+                "vpc_peering_connection_id": ""
+              }
+            ],
+            "tags": {
+              "Name": "public-subnets-rt"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "public-subnets-rt",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "rtb-0cb8004780deeb5b3",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_internet_gateway.igw",
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_route_table_association",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "public-1",
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-09dfc10b8dfa3ac68",
+            "region": "us-east-1",
+            "route_table_id": "rtb-0cb8004780deeb5b3",
+            "subnet_id": "subnet-049da5e5e47c89d67",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_internet_gateway.igw",
+            "aws_route_table.public_rt",
+            "aws_subnet.s",
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        },
+        {
+          "index_key": "public-2",
+          "schema_version": 0,
+          "attributes": {
+            "gateway_id": "",
+            "id": "rtbassoc-0dab5bda61c7c9ef9",
+            "region": "us-east-1",
+            "route_table_id": "rtb-0cb8004780deeb5b3",
+            "subnet_id": "subnet-018cbdff327417547",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjEyMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_internet_gateway.igw",
+            "aws_route_table.public_rt",
+            "aws_subnet.s",
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "b",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "private",
+          "schema_version": 0,
+          "attributes": {
+            "acceleration_status": "",
+            "acl": null,
+            "arn": "arn:aws:s3:::private-bucket-e5e155cc7f559fe7",
+            "bucket": "private-bucket-e5e155cc7f559fe7",
+            "bucket_domain_name": "private-bucket-e5e155cc7f559fe7.s3.amazonaws.com",
+            "bucket_prefix": "",
+            "bucket_region": "us-east-1",
+            "bucket_regional_domain_name": "private-bucket-e5e155cc7f559fe7.s3.us-east-1.amazonaws.com",
+            "cors_rule": [],
+            "force_destroy": false,
+            "grant": [
+              {
+                "id": "0f925a229903b82c602b3c106672797593358620b745e9fee948126280a3783c",
+                "permissions": [
+                  "FULL_CONTROL"
+                ],
+                "type": "CanonicalUser",
+                "uri": ""
+              }
+            ],
+            "hosted_zone_id": "Z3AQBSTGFYJSTF",
+            "id": "private-bucket-e5e155cc7f559fe7",
+            "lifecycle_rule": [
+              {
+                "abort_incomplete_multipart_upload_days": 0,
+                "enabled": true,
+                "expiration": [],
+                "id": "cleanup-noncurrent",
+                "noncurrent_version_expiration": [
+                  {
+                    "days": 30
+                  }
+                ],
+                "noncurrent_version_transition": [],
+                "prefix": "",
+                "tags": {},
+                "transition": []
+              }
+            ],
+            "logging": [],
+            "object_lock_configuration": [],
+            "object_lock_enabled": false,
+            "policy": "",
+            "region": "us-east-1",
+            "replication_configuration": [],
+            "request_payer": "BucketOwner",
+            "server_side_encryption_configuration": [
+              {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "kms_master_key_id": "",
+                        "sse_algorithm": "AES256"
+                      }
+                    ],
+                    "bucket_key_enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "Name": "private-bucket"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "private-bucket",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "versioning": [
+              {
+                "enabled": false,
+                "mfa_delete": false
+              }
+            ],
+            "website": [],
+            "website_domain": null,
+            "website_endpoint": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "bucket": "private-bucket-e5e155cc7f559fe7",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "random_id.bucket"
+          ]
+        },
+        {
+          "index_key": "public",
+          "schema_version": 0,
+          "attributes": {
+            "acceleration_status": "",
+            "acl": null,
+            "arn": "arn:aws:s3:::public-bucket-e5e155cc7f559fe7",
+            "bucket": "public-bucket-e5e155cc7f559fe7",
+            "bucket_domain_name": "public-bucket-e5e155cc7f559fe7.s3.amazonaws.com",
+            "bucket_prefix": "",
+            "bucket_region": "us-east-1",
+            "bucket_regional_domain_name": "public-bucket-e5e155cc7f559fe7.s3.us-east-1.amazonaws.com",
+            "cors_rule": [],
+            "force_destroy": false,
+            "grant": [
+              {
+                "id": "0f925a229903b82c602b3c106672797593358620b745e9fee948126280a3783c",
+                "permissions": [
+                  "FULL_CONTROL"
+                ],
+                "type": "CanonicalUser",
+                "uri": ""
+              }
+            ],
+            "hosted_zone_id": "Z3AQBSTGFYJSTF",
+            "id": "public-bucket-e5e155cc7f559fe7",
+            "lifecycle_rule": [],
+            "logging": [],
+            "object_lock_configuration": [],
+            "object_lock_enabled": false,
+            "policy": "",
+            "region": "us-east-1",
+            "replication_configuration": [],
+            "request_payer": "BucketOwner",
+            "server_side_encryption_configuration": [
+              {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "kms_master_key_id": "",
+                        "sse_algorithm": "AES256"
+                      }
+                    ],
+                    "bucket_key_enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "Name": "public-bucket"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "public-bucket",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "versioning": [
+              {
+                "enabled": false,
+                "mfa_delete": false
+              }
+            ],
+            "website": [],
+            "website_domain": null,
+            "website_endpoint": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "bucket": "public-bucket-e5e155cc7f559fe7",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "random_id.bucket"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_lifecycle_configuration",
+      "name": "lc",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "private",
+          "schema_version": 1,
+          "attributes": {
+            "bucket": "private-bucket-e5e155cc7f559fe7",
+            "expected_bucket_owner": "",
+            "id": "private-bucket-e5e155cc7f559fe7",
+            "region": "us-east-1",
+            "rule": [
+              {
+                "abort_incomplete_multipart_upload": [],
+                "expiration": [],
+                "filter": [],
+                "id": "cleanup-noncurrent",
+                "noncurrent_version_expiration": [
+                  {
+                    "newer_noncurrent_versions": null,
+                    "noncurrent_days": 30
+                  }
+                ],
+                "noncurrent_version_transition": [],
+                "prefix": "",
+                "status": "Enabled",
+                "transition": []
+              }
+            ],
+            "timeouts": null,
+            "transition_default_minimum_object_size": "all_storage_classes_128K"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "aws_s3_bucket.b",
+            "random_id.bucket"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_public_access_block",
+      "name": "public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "block_public_acls": false,
+            "block_public_policy": false,
+            "bucket": "public-bucket-e5e155cc7f559fe7",
+            "id": "public-bucket-e5e155cc7f559fe7",
+            "ignore_public_acls": false,
+            "region": "us-east-1",
+            "restrict_public_buckets": false,
+            "skip_destroy": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "bucket": "public-bucket-e5e155cc7f559fe7",
+            "region": "us-east-1"
+          },
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.b",
+            "random_id.bucket"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "instance_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:security-group/sg-00989f081889b2286",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-00989f081889b2286",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 22,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 22
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 443,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 443
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 80,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 80
+              }
+            ],
+            "name": "SG for Instance",
+            "name_prefix": "",
+            "owner_id": "213401740863",
+            "region": "us-east-1",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Name": "instance-security-group"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "instance-security-group",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "sg-00989f081889b2286",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_subnet",
+      "name": "s",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "private-1",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:subnet/subnet-0d1ae20e26919bb15",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1e",
+            "availability_zone_id": "use1-az3",
+            "cidr_block": "10.0.3.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-0d1ae20e26919bb15",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "213401740863",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "subnet-private-1"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "subnet-private-1",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "subnet-0d1ae20e26919bb15",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        },
+        {
+          "index_key": "private-2",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:subnet/subnet-026284745288fb8b9",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1d",
+            "availability_zone_id": "use1-az2",
+            "cidr_block": "10.0.4.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-026284745288fb8b9",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "213401740863",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "subnet-private-2"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "subnet-private-2",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "subnet-026284745288fb8b9",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        },
+        {
+          "index_key": "public-1",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:subnet/subnet-049da5e5e47c89d67",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1e",
+            "availability_zone_id": "use1-az3",
+            "cidr_block": "10.0.1.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-049da5e5e47c89d67",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": true,
+            "outpost_arn": "",
+            "owner_id": "213401740863",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "subnet-public-1"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "subnet-public-1",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "subnet-049da5e5e47c89d67",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        },
+        {
+          "index_key": "public-2",
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:subnet/subnet-018cbdff327417547",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1d",
+            "availability_zone_id": "use1-az2",
+            "cidr_block": "10.0.2.0/24",
+            "customer_owned_ipv4_pool": "",
+            "enable_dns64": false,
+            "enable_lni_at_device_index": 0,
+            "enable_resource_name_dns_a_record_on_launch": false,
+            "enable_resource_name_dns_aaaa_record_on_launch": false,
+            "id": "subnet-018cbdff327417547",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_association_id": "",
+            "ipv6_native": false,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": true,
+            "outpost_arn": "",
+            "owner_id": "213401740863",
+            "private_dns_hostname_type_on_launch": "ip-name",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "subnet-public-2"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "subnet-public-2",
+              "Project": "IaC deployment prep tasks"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-037f346c2675d0918"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "subnet-018cbdff327417547",
+            "region": "us-east-1"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "aws_vpc.main",
+            "data.aws_availability_zones.available",
+            "random_shuffle.az"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_vpc",
+      "name": "main",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:vpc/vpc-037f346c2675d0918",
+            "assign_generated_ipv6_cidr_block": false,
+            "cidr_block": "10.0.0.0/16",
+            "default_network_acl_id": "acl-06dfe6aad884bbbd2",
+            "default_route_table_id": "rtb-04a03f629ec05ec51",
+            "default_security_group_id": "sg-056b6faad7d5c86d9",
+            "dhcp_options_id": "dopt-03c407fe19236a19c",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "id": "vpc-037f346c2675d0918",
+            "instance_tenancy": "default",
+            "ipv4_ipam_pool_id": null,
+            "ipv4_netmask_length": null,
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "ipv6_cidr_block_network_border_group": "",
+            "ipv6_ipam_pool_id": "",
+            "ipv6_netmask_length": 0,
+            "main_route_table_id": "rtb-04a03f629ec05ec51",
+            "owner_id": "213401740863",
+            "region": "us-east-1",
+            "tags": {
+              "Name": "main-vpc"
+            },
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Name": "main-vpc",
+              "Project": "IaC deployment prep tasks"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "vpc-037f346c2675d0918",
+            "region": "us-east-1"
+          },
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_vpc_security_group_egress_rule",
+      "name": "instance_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:security-group-rule/sgr-0f380b8a4a38a4d14",
+            "cidr_ipv4": "0.0.0.0/0",
+            "cidr_ipv6": null,
+            "description": null,
+            "from_port": null,
+            "id": "sgr-0f380b8a4a38a4d14",
+            "ip_protocol": "-1",
+            "prefix_list_id": null,
+            "referenced_security_group_id": null,
+            "region": "us-east-1",
+            "security_group_id": "sg-00989f081889b2286",
+            "security_group_rule_id": "sgr-0f380b8a4a38a4d14",
+            "tags": null,
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Project": "IaC deployment prep tasks"
+            },
+            "to_port": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "sgr-0f380b8a4a38a4d14",
+            "region": "us-east-1"
+          },
+          "dependencies": [
+            "aws_security_group.instance_sg",
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_vpc_security_group_ingress_rule",
+      "name": "instance_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": "http",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:security-group-rule/sgr-02f9c695ae79bc63f",
+            "cidr_ipv4": "0.0.0.0/0",
+            "cidr_ipv6": null,
+            "description": null,
+            "from_port": 80,
+            "id": "sgr-02f9c695ae79bc63f",
+            "ip_protocol": "tcp",
+            "prefix_list_id": null,
+            "referenced_security_group_id": null,
+            "region": "us-east-1",
+            "security_group_id": "sg-00989f081889b2286",
+            "security_group_rule_id": "sgr-02f9c695ae79bc63f",
+            "tags": null,
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Project": "IaC deployment prep tasks"
+            },
+            "to_port": 80
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "sgr-02f9c695ae79bc63f",
+            "region": "us-east-1"
+          },
+          "dependencies": [
+            "aws_security_group.instance_sg",
+            "aws_vpc.main"
+          ]
+        },
+        {
+          "index_key": "https",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:security-group-rule/sgr-0820ca7f8ee184a6d",
+            "cidr_ipv4": "0.0.0.0/0",
+            "cidr_ipv6": null,
+            "description": null,
+            "from_port": 443,
+            "id": "sgr-0820ca7f8ee184a6d",
+            "ip_protocol": "tcp",
+            "prefix_list_id": null,
+            "referenced_security_group_id": null,
+            "region": "us-east-1",
+            "security_group_id": "sg-00989f081889b2286",
+            "security_group_rule_id": "sgr-0820ca7f8ee184a6d",
+            "tags": null,
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Project": "IaC deployment prep tasks"
+            },
+            "to_port": 443
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "sgr-0820ca7f8ee184a6d",
+            "region": "us-east-1"
+          },
+          "dependencies": [
+            "aws_security_group.instance_sg",
+            "aws_vpc.main"
+          ]
+        },
+        {
+          "index_key": "ssh",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:213401740863:security-group-rule/sgr-0776085e0234387a4",
+            "cidr_ipv4": "0.0.0.0/0",
+            "cidr_ipv6": null,
+            "description": null,
+            "from_port": 22,
+            "id": "sgr-0776085e0234387a4",
+            "ip_protocol": "tcp",
+            "prefix_list_id": null,
+            "referenced_security_group_id": null,
+            "region": "us-east-1",
+            "security_group_id": "sg-00989f081889b2286",
+            "security_group_rule_id": "sgr-0776085e0234387a4",
+            "tags": null,
+            "tags_all": {
+              "Course": "Public Cloud Solution Architect",
+              "Creator": "Ali-G",
+              "ManagedBy": "Terraform",
+              "Project": "IaC deployment prep tasks"
+            },
+            "to_port": 22
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "identity": {
+            "account_id": "213401740863",
+            "id": "sgr-0776085e0234387a4",
+            "region": "us-east-1"
+          },
+          "dependencies": [
+            "aws_security_group.instance_sg",
+            "aws_vpc.main"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "bucket",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "5eFVzH9Vn+c=",
+            "b64_url": "5eFVzH9Vn-c",
+            "byte_length": 8,
+            "dec": "16564615241243402215",
+            "hex": "e5e155cc7f559fe7",
+            "id": "5eFVzH9Vn-c",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "random_shuffle",
+      "name": "az",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "-",
+            "input": [
+              "us-east-1a",
+              "us-east-1b",
+              "us-east-1c",
+              "us-east-1d",
+              "us-east-1e",
+              "us-east-1f"
+            ],
+            "keepers": null,
+            "result": [
+              "us-east-1e",
+              "us-east-1d"
+            ],
+            "result_count": 2,
+            "seed": "us-east-1"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "data.aws_availability_zones.available"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

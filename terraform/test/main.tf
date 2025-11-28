@@ -219,7 +219,7 @@ output "public_ip" {
 #     Name = "custom-ami-vm"
 #   }
 # }
-# output "public_ip-cami" {
+# output "custom_vm_public_ip" {
 #   description = "Public IP of custom ami instance"
 #   value       = aws_instance.custom_ami_vm.public_ip
 # }
