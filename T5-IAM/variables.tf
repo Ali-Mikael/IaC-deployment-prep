@@ -29,9 +29,10 @@ variable "key_name_vm1" {
   default = "vm1-key"
 }
 
-# Instance ID to create a custom image
-variable "source_instance_id" {
-  description = "A custom AMI will be created from this instance"
-  type = string
-  default = null
+variable "secret" {
+  type = map(string)
+  sensitive = true
+  default = {
+  user1 = "Password1!"
+  }
 }
