@@ -18,16 +18,17 @@ We are creating:
 - All resources created are getting default tags automatically, configured within the provider block (note that this doesn't apply to ELB/ALB created resources without explicit configuration)
 
 # Deploying
-You can either copy the `*.tf` files in this folder to your machine of choice, navigate into the folder, initialise terraform from there:
-```
+You can either copy the `*.tf` files in this folder to your machine of choice, navigate into the folder, and initialise terraform from there:
+```bash
 $ terraform init
 ```
 And then apply (to create resources):
-```
+```bash
 $ terraform apply
 ```
-This will effectively **only** create resources that are specified in this folder.       
+This will effectively **only** create resources that are *specified in this folder*.       
 
 ## OR
-You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go!
+You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
+
 
