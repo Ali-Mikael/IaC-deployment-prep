@@ -48,8 +48,19 @@ Like so:
 
 But if that isn't enough:
 - <img width="1150" height="29" alt="Screenshot 2025-11-29 at 18 05 40" src="https://github.com/user-attachments/assets/24fefdc4-8dac-4859-a954-642286bec88a" />
-- <img width="1170" height="269" alt="Screenshot 2025-11-29 at 18 06 39" src="https://github.com/user-attachments/assets/ae233942-1313-468d-8a1f-8853c3ab25a1" />
+- <img width="1170" height="269" alt="Screenshot 2025-11-29 at 18 06 39" src="https://github.com/user-attachments/assets/ae233942-1313-468d-8a1f-8853c3ab25a1" />     
 
 
+# Deploying
+You can either copy the `*.tf` files in this folder to your machine of choice, navigate into the folder, and initialise terraform from there:
+```bash
+$ terraform init
+```
+And then apply (to create resources):
+```bash
+$ terraform apply
+```
+This will effectively **only** create resources that are *specified in this folder*.       
 
-
+## OR
+You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
