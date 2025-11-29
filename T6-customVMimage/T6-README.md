@@ -41,13 +41,7 @@ $ terraform init
 ```
 $ terraform apply
 ```
-<img width="302" height="123" alt="Screenshot 2025-11-26 at 17 52 25" src="https://github.com/user-attachments/assets/aa8fbcd2-855d-4068-bafb-1abc3ccb5fe1" />      
-
-**Side note:**
-- For this to work, we have to have an external EBS storage device (which the template creates for us, you can see the code how it's done)
-- <img width="1299" height="387" alt="Screenshot 2025-11-26 at 17 56 58" src="https://github.com/user-attachments/assets/d68f687c-776c-40f5-89d6-401c0db423e8" />
-- <img width="731" height="374" alt="Screenshot 2025-11-26 at 17 57 20" src="https://github.com/user-attachments/assets/7d7a053b-aa99-4f67-a6a3-65cb1fe7d857" />       
-
+<img width="302" height="123" alt="Screenshot 2025-11-26 at 17 52 25" src="https://github.com/user-attachments/assets/aa8fbcd2-855d-4068-bafb-1abc3ccb5fe1" />        
 
 **Log into your VM using the IP from the output**
 ```
@@ -115,3 +109,4 @@ $ terraform apply
 
 ## The VPC I was talking about:
 <img width="1646" height="733" alt="Screenshot 2025-11-26 at 17 55 17" src="https://github.com/user-attachments/assets/966e2029-135b-4d73-9b1d-58e18a848dd9" />
+
