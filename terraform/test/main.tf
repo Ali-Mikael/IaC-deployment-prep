@@ -146,24 +146,26 @@ resource "aws_vpc_security_group_egress_rule" "e" {
 # Compute
 # -------
 
-# EBS volume for the instance
-resource "aws_ebs_volume" "root_volume" {
-  availability_zone = data.aws_availability_zones.available.names[0]
-  size              = 40
+# Uncomment for a detachable EBS volume
+# ------------------------------------->
+# resource "aws_ebs_volume" "ebs" {
+#   availability_zone = data.aws_availability_zones.available.names[0]
+#   size              = 30
 
-  tags = {
-    Name = "instance-ebs-root-volume"
-  }
-}
+#   tags = {
+#     Name = "detachable-ebs-volume"
+#   }
+# }
 
-# Attaching the volume
-resource "aws_volume_attachment" "ebs" {
-  device_name = "/dev/sdh"
-  instance_id = aws_instance.test_1.id
-  volume_id   = aws_ebs_volume.root_volume.id
+# # Attaching the volume
+# resource "aws_volume_attachment" "ebs" {
+#   device_name = "/dev/sdh"
+#   instance_id = aws_instance.test_1.id
+#   volume_id   = aws_ebs_volume.ebs.id
 
-  stop_instance_before_detaching = true
-}
+#   stop_instance_before_detaching = true
+# }
+# <--------------------------------------
 
 resource "aws_instance" "test_1" {
   ami                    = data.aws_ami.ubuntu.id
@@ -172,7 +174,6 @@ resource "aws_instance" "test_1" {
   availability_zone      = data.aws_availability_zones.available.names[0]
   vpc_security_group_ids = [aws_security_group.sg.id]
 
-  ebs_optimized = true
   key_name      = aws_key_pair.vm1.key_name
 
   tags = {
@@ -198,11 +199,10 @@ output "public_ip" {
 #     create = "10m"
 #   }
 # }
-
 # output "custom_ami_id" {
 #   value = aws_ami_from_instance.custom_ami.id
 # }
-
+# <---------------------------------------------
 
 # This section is for creating a VM from that custom AMI
 # ------------------------------------------------------>
@@ -223,3 +223,4 @@ output "public_ip" {
 #   description = "Public IP of custom ami instance"
 #   value       = aws_instance.custom_ami_vm.public_ip
 # }
+# <---------------------------------------------------
