@@ -145,34 +145,12 @@ resource "aws_vpc_security_group_egress_rule" "e" {
 
 # Compute
 # -------
-
-# EBS volume for the instance
-resource "aws_ebs_volume" "root_volume" {
-  availability_zone = data.aws_availability_zones.available.names[0]
-  size              = 40
-
-  tags = {
-    Name = "instance-ebs-root-volume"
-  }
-}
-
-# Attaching the volume
-resource "aws_volume_attachment" "ebs" {
-  device_name = "/dev/sdh"
-  instance_id = aws_instance.test_1.id
-  volume_id   = aws_ebs_volume.root_volume.id
-
-  stop_instance_before_detaching = true
-}
-
 resource "aws_instance" "test_1" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.test.id
   availability_zone      = data.aws_availability_zones.available.names[0]
   vpc_security_group_ids = [aws_security_group.sg.id]
-
-  ebs_optimized = true
   key_name      = aws_key_pair.vm1.key_name
 
   tags = {
@@ -189,8 +167,9 @@ output "public_ip" {
   value       = aws_instance.test_1.public_ip
 }
 
-# Uncomment the following section && run `terraform apply` when you want to create a custom AMI
-# --------------------------------------------------------------------------------------------->
+# -*- Uncomment the following section && run `terraform apply` 
+# for custom AMI -*-
+# ------------------>
 # resource "aws_ami_from_instance" "custom_ami" {
 #   name               = "Custom AMI"
 #   source_instance_id = aws_instance.test_1.id
@@ -202,10 +181,11 @@ output "public_ip" {
 # output "custom_ami_id" {
 #   value = aws_ami_from_instance.custom_ami.id
 # }
+# <---------------------------------------------
 
 
-# This section is for creating a VM from that custom AMI
-# ------------------------------------------------------>
+# -*- This section is for creating a VM from that custom AMI -*-
+# -------------------------------------------------------------->
 # resource "aws_instance" "custom_ami_vm" {
 #   ami                    = aws_ami_from_instance.custom_ami.id
 #   instance_type          = var.instance_type
@@ -223,3 +203,26 @@ output "public_ip" {
 #   description = "Public IP of custom ami instance"
 #   value       = aws_instance.custom_ami_vm.public_ip
 # }
+# <----------------------------------------------------
+
+
+# -*- Uncomment for detachable EBS volume -*-
+# ------------------------------------------->
+# resource "aws_ebs_volume" "ebs" {
+#   availability_zone = data.aws_availability_zones.available.names[0]
+#   size              = 40
+
+#   tags = {
+#     Name = "ebs-volume"
+#   }
+# }
+
+# # Attaching the volume
+# resource "aws_volume_attachment" "ebs" {
+#   device_name = "/dev/sdh"
+#   instance_id = aws_instance.test_1.id
+#   volume_id   = aws_ebs_volume.ebs.id
+
+#   stop_instance_before_detaching = true
+# }
+# <-------------------------------------
