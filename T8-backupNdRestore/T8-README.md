@@ -77,7 +77,7 @@ We'll first apply this:
   - Retention period for the backup is 2 weeks.
 
 ### Now we just need the target (the commented out section you saw)
-```
+```hcl
 # Selecting resource to back up
 resource "aws_backup_selection" "myselection" {
   iam_role_arn = data.aws_iam_role.lab_role.arn
@@ -92,8 +92,8 @@ resource "aws_backup_selection" "myselection" {
 }
 ```
 
-I left this for last, as I had some problems with IAM before (only the sandbox environment i'm working tho, if you have a normal account, feel free to apply the whole thing at once).          
-And you have to assign the service a role, so it can create backups of your resources.     
+I left this for last, as I had some problems with IAM before (only the sandbox environment i'm with working tho, if you have a normal account, feel free to apply the whole thing at once).          
+The thing here is, you have to assign the service a role, so it can create backups of your resources.     
 
 ### Uncomment --> terraform apply --> pray
 
@@ -126,3 +126,4 @@ This will effectively **only** create resources that are *specified in this fold
 
 ## OR
 You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
+
