@@ -114,7 +114,7 @@ Note also the highlighted line in the code snippet. We are *only allowing SSH* i
   - <img width="536" height="271" alt="Screenshot 2025-11-30 at 17 27 48" src="https://github.com/user-attachments/assets/7851e246-ab94-4461-8a7a-bfb58d25291e" />
 - Then apply again:
   - <img width="439" height="152" alt="Screenshot 2025-11-30 at 17 28 27" src="https://github.com/user-attachments/assets/1fdb0310-e6dd-4657-8324-eec776c4b04f" />
-- Terraform deleted the old VM, in order to create it in the private subnet, that's why you see to VM-1s in the console:
+- Terraform destroyed the old VM, in order to create it in the private subnet, that's why you see two `VM-1s` in the console:
   - <img width="677" height="247" alt="Screenshot 2025-11-30 at 17 23 46" src="https://github.com/user-attachments/assets/5a712c49-ab94-46e0-89c5-772fa27663cd" />
   - <img width="499" height="431" alt="Screenshot 2025-11-30 at 17 25 01" src="https://github.com/user-attachments/assets/0facd796-ee67-4fe6-8934-8ac259424af2" />
   - **Bastion host:**
@@ -162,5 +162,6 @@ This will effectively **only** create resources that are *specified in this fold
 
 ## OR
 You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
+
 
 
