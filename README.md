@@ -13,7 +13,7 @@ Each task is contained inside a folder with the `"T" prefix`, but ultimately all
   - Instructions here: <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>
 - Download git repo.
 ```bash
-$ git clone https://github.com/Ali-Mikael/IaC-deployment-prep
+git clone https://github.com/Ali-Mikael/IaC-deployment-prep
 ```
 - Navigate to the `/terraform` directory.
 - Paste your **AWS credentials** into `~/.aws/credentials`.
@@ -22,13 +22,14 @@ $ git clone https://github.com/Ali-Mikael/IaC-deployment-prep
   
 **Initialize terraform**
 ```bash
-$ terraform init
+terraform init
 ```
 Once you're set, go ahead and **deploy:**
 ```bash
-$ terraform apply
+terraform apply
 ```
 ### Let terraform do its magic and enjoy!        
 
 ## Alternatively
-You can copy the `*.tf` files from your folder of choice, and only deploy that specific setup!
+You can copy the `*.tf` files from your folder of choice, and only deploy that specific setup!     
+(See folder specific `T*-README.md` for more)
