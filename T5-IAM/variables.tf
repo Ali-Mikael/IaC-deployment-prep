@@ -18,21 +18,22 @@ variable "az_count" {
 
 # Instance type for VM
 variable "instance_type" {
-  type = string
+  type    = string
   default = "t2.micro"
 }
 
 # SSH key name
 variable "key_name_vm1" {
-  type = string
+  type        = string
   description = "SSH key name"
-  default = "vm1-key"
+  default     = "vm1-key"
 }
 
+# Secret going to be stored
 variable "secret" {
-  type = map(string)
+  type      = map(string)
   sensitive = true
-  default = {
-  user1 = "Password1!"
+  default   = {
+    user1 = "Password1!"
   }
 }
