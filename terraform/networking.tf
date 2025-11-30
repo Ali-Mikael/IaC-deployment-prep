@@ -1,6 +1,5 @@
-# ----------
-# Networking
-# ----------
+# -*- Networking -*-
+# ------------------
 
 # VPC
 resource "aws_vpc" "main" {
@@ -24,6 +23,26 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+# NAT gw
+resource "aws_nat_gateway" "nat_gw" {
+  subnet_id     = aws_subnet.s["public-1"].id
+  allocation_id = aws_eip.nat.id
+  depends_on    = [aws_internet_gateway.igw]
+
+  tags = {
+    Name = "nat-gw"
+  }
+}
+
+# EIP for NAT
+resource "aws_eip" "nat" {
+  domain = "vpc"
+  tags = {
+    Name = "nat-eip"
+  }
+}
+
+
 # Subnets 
 # -------
 resource "random_shuffle" "az" {
@@ -46,11 +65,9 @@ resource "aws_subnet" "s" {
 }
 
 
-# Routing
-# -------
-
-# Creating a route table for public subnets
-resource "aws_route_table" "public_rt" {
+# Route table for public subnets
+# ------------------------------
+resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   route {
@@ -62,14 +79,36 @@ resource "aws_route_table" "public_rt" {
     Name = "public-subnets-rt"
   }
 }
-
-# Associating public route table with public subnets
-# If clause makes sure only public subnets get associated
+# Associating public RT with public subnets
 resource "aws_route_table_association" "public" {
   for_each = {
     for k, v in aws_subnet.s : k => v if startswith(k, "public")
   }
 
   subnet_id      = each.value.id
-  route_table_id = aws_route_table.public_rt.id
+  route_table_id = aws_route_table.public.id
+}
+
+# Route table for private subnets
+# -------------------------------
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.nat_gw.id
+  }
+
+  tags = {
+    Name = "private-subnets-rt"
+  }
+}
+# Associating private RT with private subnets
+resource "aws_route_table_association" "private" {
+  for_each = {
+    for k, v in aws_subnet.s : k => v if startswith(k, "private")
+  }
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.private.id
 }
