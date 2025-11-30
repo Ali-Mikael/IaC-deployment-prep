@@ -3,7 +3,7 @@
 resource "aws_instance" "vm1" {
   ami                    = data.aws_ami.ubuntu.id
   instance_type          = var.instance_type
-  subnet_id              = aws_subnet.s["public-1"].id
+  subnet_id              = aws_subnet.s["private-2"].id
   key_name               = aws_key_pair.vm1.key_name
   vpc_security_group_ids = [aws_security_group.instance_sg.id]
   user_data              = file("./files/init-script.sh")
@@ -30,6 +30,32 @@ resource "aws_instance" "vm1" {
 resource "aws_key_pair" "vm1" {
   key_name   = var.key_name_vm1
   public_key = local.public_key
+
+  tags = {
+    Name = "vm1-pub-key"
+  }
+}
+
+# Bastion host
+resource "aws_instance" "bastion_host" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.s["public-1"].id
+  key_name               = aws_key_pair.bastion.key_name
+  vpc_security_group_ids = [aws_security_group.ssh_access.id]
+
+  tags = {
+    Name = "bastion-host"
+  }
+}
+
+resource "aws_key_pair" "bastion" {
+  key_name   = var.key_name_bastion
+  public_key = local.bastion_key
+
+  tags = {
+    Name = "bastion-pub-key"
+  }
 }
 
 
