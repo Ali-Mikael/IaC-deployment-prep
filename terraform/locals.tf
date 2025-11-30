@@ -40,6 +40,8 @@ locals {
 locals {
   # The file/path/to/your/public_key on your local machine
   public_key = file("~/.ssh/vm1.pub")
+
+  bastion_key = file("~/.ssh/bastion_key.pub")
 }
 
 # Random string for bucket names
