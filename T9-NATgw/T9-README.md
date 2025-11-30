@@ -71,7 +71,7 @@ To get a VM in a private subnet. We only need to change one line in our VM1 conf
 subnet_id = aws_subnet.s["public-1"].id
 ```
 **To =>**
-```
+```hcl
 subnet_id = aws_subnet.s["private-2"].id
 ```    
 
@@ -161,3 +161,4 @@ This will effectively **only** create resources that are *specified in this fold
 
 ## OR
 You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
+
