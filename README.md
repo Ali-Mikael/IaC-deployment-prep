@@ -15,9 +15,9 @@ Each task is contained inside a folder with the `"T" prefix`, but ultimately all
 ```bash
 git clone https://github.com/Ali-Mikael/IaC-deployment-prep
 ```
-- Navigate to the `/terraform` directory.
 - Paste your **AWS credentials** into `~/.aws/credentials`.
   - (For example: `$ nano ~/.aws/credentials` > paste > `Ctrl + X` to save and `y + enter` to confirm)
+- Navigate to the `/terraform` directory.
 - Make sure you are within the folder! `$ pwd`      
   
 **Initialize terraform**
