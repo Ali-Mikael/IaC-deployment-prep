@@ -65,7 +65,7 @@ resource "aws_subnet" "s" {
 }
 
 
-# Route table for public subnets
+# Route table for -public- subnets
 # ------------------------------
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
@@ -79,17 +79,8 @@ resource "aws_route_table" "public" {
     Name = "public-subnets-rt"
   }
 }
-# Associating public RT with public subnets
-resource "aws_route_table_association" "public" {
-  for_each = {
-    for k, v in aws_subnet.s : k => v if startswith(k, "public")
-  }
 
-  subnet_id      = each.value.id
-  route_table_id = aws_route_table.public.id
-}
-
-# Route table for private subnets
+# Route table for -private- subnets
 # -------------------------------
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
@@ -103,12 +94,11 @@ resource "aws_route_table" "private" {
     Name = "private-subnets-rt"
   }
 }
-# Associating private RT with private subnets
-resource "aws_route_table_association" "private" {
-  for_each = {
-    for k, v in aws_subnet.s : k => v if startswith(k, "private")
-  }
+
+# Associating route tables with subnets
+resource "aws_route_table_association" "rta" {
+  for_each = aws_subnet.s
 
   subnet_id      = each.value.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = startswith(each.key, "public") ? aws_route_table.public.id : (startswith(each.key, "private") ? aws_route_table.private.id : "")
 }
