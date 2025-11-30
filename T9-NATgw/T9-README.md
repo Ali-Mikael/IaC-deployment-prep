@@ -59,12 +59,13 @@ resource "aws_route_table_association" "private" {
 - <img width="191" height="35" alt="apply_complete" src="https://github.com/user-attachments/assets/496a6298-c922-47ec-af9b-aa0380b29b9f" />
 - <img width="584" height="255" alt="Screenshot 2025-11-29 at 23 15 44" src="https://github.com/user-attachments/assets/c93e86f9-6e47-48a7-afc3-fe026539d64e" />     
 
-## And now we have a NAT gw and routes for it:
+## Now we have a NAT gw and routes for it:
 - <img width="1183" height="329" alt="Screenshot 2025-11-29 at 23 16 35" src="https://github.com/user-attachments/assets/c547822e-a001-40bf-b972-858dd6a2e1b5" />
 
 
 # Private VM and bastion host
-To get a VM in a private subnet. We only need to change one line in our VM1 config.    
+Moving the VM to a private subnet => only requires changing **one word** in our VM1 config and then typing "terraform apply".   
+(This really higlights the ease of use in terraform)      
 
 **The line:**
 ```hcl
@@ -75,7 +76,7 @@ subnet_id = aws_subnet.s["public-1"].id
 subnet_id = aws_subnet.s["private-2"].id
 ```    
 
-Thans to the NAT-gw, the VM will be able to access the internet, but how do **we** access the VM?     
+Thanks to the NAT-gw, the VM will be able to access the internet, but how do **we** access the VM?     
 By using a ***Bastion Host***:
 ```hcl
 # Bastion host
@@ -161,4 +162,5 @@ This will effectively **only** create resources that are *specified in this fold
 
 ## OR
 You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
+
 
