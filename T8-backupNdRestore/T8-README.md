@@ -70,11 +70,12 @@ We'll first apply this:
   - <img width="867" height="608" alt="Screenshot 2025-11-29 at 21 40 23" src="https://github.com/user-attachments/assets/5f1b6cc6-4ad1-429a-9671-5e119cf17258" />
 - And then the `Backup plans` section (from the menu on the left)
   - <img width="523" height="375" alt="Screenshot 2025-11-29 at 21 40 58" src="https://github.com/user-attachments/assets/5662e82b-7aa6-4ca8-aed3-6cc466537b47" />
-  - <img width="1607" height="390" alt="Screenshot 2025-11-29 at 21 41 25" src="https://github.com/user-attachments/assets/f2c4f2a8-baa8-42a5-b91f-128f94e8cda5" />
-- We have one rule which specifies:
-  - Backing up the instance, once a day, between 10-12.
-  - Start time is 10am and has to be completed within 2 hours.
-  - Retention period for the backup is 2 weeks.
+  - <img width="1607" height="390" alt="Screenshot 2025-11-29 at 21 41 25" src="https://github.com/user-attachments/assets/f2c4f2a8-baa8-42a5-b91f-128f94e8cda5" />    
+
+We have one `backup rule`:
+  - **Backups** area taken between 10-12 **every day**.
+  - **Start time** is 10am and has to be completed within 2 hours.
+  - **Retention period** for the backup is **2 weeks**.
 
 ### Now we just need the target (the commented out section you saw)
 ```hcl
@@ -104,14 +105,16 @@ And from the console, we can now see that a target has been created:
 - <img width="727" height="215" alt="Screenshot 2025-11-29 at 21 52 23" src="https://github.com/user-attachments/assets/4d4a8fbd-b121-455f-8ef7-471f1afb3c11" />
 - <img width="368" height="312" alt="Screenshot 2025-11-29 at 21 54 01" src="https://github.com/user-attachments/assets/93298b80-3934-48f9-82a4-1048c70c3d1f" />     
 
-Because of the tags in our EC2 instance config (root_block_device section/block):
+Because of the tags in our EC2 instance config (`root_block_device` block):
 - <img width="416" height="280" alt="Screenshot 2025-11-29 at 21 54 31" src="https://github.com/user-attachments/assets/1faefdbb-2d07-4aee-a391-b75a65b07acc" />
 - The service is able to locate it.
-- This is a very useful way of managing backups, you can add/modify tags to create more fine graned backup operations.
+- This is especially useful, as you can add/modify tags to create more fine grained backup operations!     
+
+Scroll down to the end of the page for confirmation.
 
 
 ## Note: To whom it may concern
-Remember to configure your IAM stuff properly if you end up using this yourself!
+Remember to configure your IAM stuff properly if you end up using this yourself!     
 
 # Deploying
 You can either copy the `*.tf` files in this folder to your machine of choice, navigate into the folder, and initialise terraform from there:
