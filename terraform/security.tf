@@ -74,6 +74,10 @@ resource "aws_security_group" "instance_sg" {
   name   = "SG for Instance"
   vpc_id = aws_vpc.main.id
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   tags = {
     Name = "instance-security-group"
   }
@@ -94,4 +98,26 @@ resource "aws_vpc_security_group_egress_rule" "instance_sg" {
   security_group_id = aws_security_group.instance_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1" # equivalent to all ports
+}
+
+resource "aws_security_group" "ssh_access" {
+  name   = "Admin SSH access"
+  vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port   = local.ports.ssh
+    to_port     = local.ports.ssh
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "admin-SSH-access"
+  }
 }
