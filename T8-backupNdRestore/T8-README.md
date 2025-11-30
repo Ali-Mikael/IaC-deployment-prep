@@ -58,7 +58,7 @@ resource "aws_instance" "vm1" {
 - <img width="750" height="133" alt="Screenshot 2025-11-29 at 21 14 18" src="https://github.com/user-attachments/assets/6e306e9e-141c-4b8b-a97a-e2b8bb53c154" />
 - <img width="959" height="336" alt="Screenshot 2025-11-29 at 21 16 41" src="https://github.com/user-attachments/assets/ccf37a13-ef6c-49a0-b501-e38be5faecc2" />    
 
-The VM can now be backed up, as we can take snapshots of the root EBS volume.
+The VM can now be backed up!     
 
 
 # Backups
@@ -127,3 +127,8 @@ This will effectively **only** create resources that are *specified in this fold
 ## OR
 You can **download** the main `/terraform` **folder** to your computer **locally** **-->** **navigate to the folder** **-->** and **execute the same steps:** to provision the whole infra in one go! 
 
+
+# Update a day later
+Confirmation that it works:
+- <img width="1601" height="351" alt="Screenshot 2025-11-30 at 16 28 19" src="https://github.com/user-attachments/assets/73a154d0-ee0f-4a4f-afab-d2ddadd67a6b" />
+- <img width="1595" height="425" alt="Screenshot 2025-11-30 at 18 34 38" src="https://github.com/user-attachments/assets/6b220e16-7236-4e76-8897-deb3708da4cc" />
