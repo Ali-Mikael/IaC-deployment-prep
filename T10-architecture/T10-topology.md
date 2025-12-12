@@ -16,14 +16,14 @@ The [deployment](https://github.com/Ali-Mikael/C2ID) <-- repo.
 
 
 # What does it cost?
-Terraform manages just under a 100 resources (not even latest picture):          
+Terraform manages just under a 100 resources:          
 <img width="499" height="301" alt="Screenshot 2025-12-12 at 3 12 26" src="https://github.com/user-attachments/assets/c2eb2ea3-7df9-4afe-adc3-fb544263f64d" />     
 AWS Dashboard:     
 <img width="190" height="62" alt="Screenshot 2025-12-12 at 23 21 22" src="https://github.com/user-attachments/assets/a0ded196-8614-4fd5-b745-389a3055ddd6" />      
 
 
-We have implemented a **highly available environment**, using **redundancy** and **load balancing**, with best practices in mind like Redis caching and S3 storage for repositories and artefacts (not implemented fully here though, as it would require a lot of configuration management, which is outside the scope of this course, PLUS the IAM restrictions make it a lot more difficult, somewhere even impossible to setup proper connections).      
-Anyway, at full speed ahead, with daily users and moderate traffic, I would estimate a monthly cost of **50$ - 100$**.     
+We have created a **highly available environment**, using **redundancy** and **load balancing**, with best practices in mind like caching server for Gitea and S3 storage for repositories and artefacts (not implemented fully here though, as it would require a lot of configuration management, which is outside the scope of this course, PLUS the IAM restrictions make it a lot more difficult, somewhere even impossible to setup proper connections).      
+Anyway, at full speed ahead, with daily users and moderate traffic, I would estimate a monthly cost of **70$ - 120$**.     
 The AWS sandbox environment which we used for this project, **denies access to the cost calculator**, or any service like it for that matter. But based on my own usage, plus the small crumb of information AWS does give in the console:     
 <img width="222" height="201" alt="Screenshot 2025-12-12 at 23 26 46" src="https://github.com/user-attachments/assets/0ef882ca-53c6-44aa-9df7-d8ac0ee39a77" />     
 We can easily double the amount we see on the picture, and pick a "baseline" from there!
